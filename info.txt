@@ -1,0 +1,6 @@
+tailwind for vite
+https://tailwindcss.com/docs/guides/vite
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
