@@ -1,23 +1,23 @@
 import { Dialog } from './components/ui/dialog'
 import { CreateGoal } from './components/create-goal'
+import { EmptyGoals } from './components/empty-goals'
 import { Summary } from './components/summary'
+import { useQuery } from '@tanstack/react-query'
+import { getSummary } from './http/get-summary';
 
 function App() {
-  const apiUrl = import.meta.env.VITE_API_URL;
-  const summary = `${apiUrl}/summary`
 
-  console.log(apiUrl)
-  console.log(summary)
-  
-  fetch(summary).then((response) => {
-    return response.json()
-  }).then(data => {
-    console.log(data)
+
+  const { data } = useQuery({
+    queryKey: [''],
+    queryFn: getSummary,
   })
 
   return (
     <Dialog>
-      <Summary/>
+      
+      {data?.total && data.total > 0 ? <Summary/> : <EmptyGoals/>}
+
       <CreateGoal />
     </Dialog>
 
