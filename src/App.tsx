@@ -7,10 +7,10 @@ import { getSummary } from './http/get-summary';
 
 function App() {
 
-
   const { data } = useQuery({
-    queryKey: [''],
+    queryKey: ['summary'],
     queryFn: getSummary,
+    staleTime: 1000 * 60,
   })
 
   return (
